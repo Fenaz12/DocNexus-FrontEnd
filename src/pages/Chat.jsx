@@ -74,23 +74,21 @@ export default function Chat() {
 
 
   // Update displayed thread when URL changes
-  useEffect(() => {
+useEffect(() => {
     displayedThreadRef.current = threadId;
     
+    if (loading) return;
     if (threadId && threadId !== currentThreadId) {
       setStreamingContent('');
       setThinkingSteps([]);
       setToolCalls([]);
-      setLoading(false);
-      
       loadThread(threadId);
       setCurrentThreadId(threadId);
     } else if (!threadId) {
-      // New chat - clear everything
       setMessages([]);
       setCurrentThreadId(null);
     }
-  }, [threadId]);
+  }, [threadId, currentThreadId, loading]);
 
 
   useEffect(() => {
