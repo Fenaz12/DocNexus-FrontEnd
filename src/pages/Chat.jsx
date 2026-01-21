@@ -73,30 +73,25 @@ export default function Chat() {
   const displayedThreadRef = useRef(threadId);
 
 
-  // Update displayed thread when URL changes
-useEffect(() => {
+  useEffect(() => {
     displayedThreadRef.current = threadId;
-    
+  
     if (loading) return;
+
     if (threadId && threadId !== currentThreadId) {
+      console.log("Switched threads, loading from DB...");
       setStreamingContent('');
       setThinkingSteps([]);
       setToolCalls([]);
+            
       loadThread(threadId);
       setCurrentThreadId(threadId);
     } else if (!threadId) {
+      // New chat - clear everything
       setMessages([]);
       setCurrentThreadId(null);
     }
-  }, [threadId, currentThreadId, loading]);
-
-
-  useEffect(() => {
-    if (threadId) {
-      loadThread(threadId);
-    }
-  }, [threadId]);
-
+  }, [threadId, currentThreadId, loading]); 
 
   // Auto-scroll to bottom when streaming
   useEffect(() => {
