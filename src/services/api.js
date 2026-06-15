@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-
-const API_URL = 'https://zksacisrzh.execute-api.eu-north-1.amazonaws.com/';
+const API_URL = 'https://docnexus-py.onrender.com/';
+//const API_URL = 'https://zksacisrzh.execute-api.eu-north-1.amazonaws.com/';
 
 const api = axios.create({
   baseURL: API_URL,
